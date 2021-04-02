@@ -1,0 +1,12 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "declaration": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "Node",
+        "outDir": "dist",
+        "target": "ES2016"
+    }
+}
