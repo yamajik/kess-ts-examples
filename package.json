@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "kess": "file:../kess-ts",
-    "kess-flow": "file:../kess-flow"
+    "kess": "^0.1.1",
+    "kess-flow": "^0.2.0"
   },
   "devDependencies": {
     "ts-node": "^9.1.1",
