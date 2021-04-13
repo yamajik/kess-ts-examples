@@ -1,19 +1,12 @@
-import { Function, method, subscribe } from "kess";
+import { method, Module } from "kess";
 import { Graph, TranspileNetwork } from "kess-flow";
 
-export class Flow extends Function {
+export class Flow extends Module {
   networks: Map<string, TranspileNetwork>;
 
   constructor() {
     super();
     this.networks = new Map<string, TranspileNetwork>();
-  }
-
-  @subscribe("test")
-  @method()
-  async test(data) {
-    console.log("test", data);
-    return { status: "SUCCESS" };
   }
 
   @method()

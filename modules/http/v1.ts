@@ -1,7 +1,7 @@
-import { Client, Function, method, subscribe } from "kess";
+import { Client, method, Module, subscribe } from "kess";
 import * as uuid from "uuid";
 
-export class HttpV1 extends Function {
+export class HttpV1 extends Module {
   client: Client;
   cache: Map<string, any>;
 
@@ -34,14 +34,13 @@ export class HttpV1 extends Function {
     }, 30 * 1000);
   }
 
-  @subscribe("http.response")
-  @method()
+  @subscribe({ topic: "http.response" })
   async response({ data }) {
     const { id, requestID } = data;
     console.log("http.response", data);
     const res = this.cache.get(`${id}.${requestID}`);
-    if (!res) return { status: "DROP" };
+    if (!res) return subscribe.drop();
     res.json(data.data);
-    return { status: "SUCCESS" };
+    return subscribe.success();
   }
 }

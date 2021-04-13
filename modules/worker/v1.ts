@@ -1,6 +1,6 @@
-import { Client, Function, method, subscribe } from "kess";
+import { Client, method, Module, subscribe } from "kess";
 
-export class WorkerV1 extends Function {
+export class WorkerV1 extends Module {
   client: Client;
 
   constructor() {
@@ -8,8 +8,7 @@ export class WorkerV1 extends Function {
     this.client = new Client();
   }
 
-  @subscribe("http.request.test")
-  @method()
+  @subscribe({ topic: "http.request.test" })
   async request({ data }) {
     console.log("worker.test", data);
     this.client.pubsub().publish("http.response", data);
